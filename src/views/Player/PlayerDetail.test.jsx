@@ -36,7 +36,7 @@ it('should render a detailed view of an individual team', async () => {
     </MemoryRouter>
   );
 
-  await screen.findByText('Loading', { exact: false });
+  // await screen.findByText('Loading', { exact: false });
   await waitForElementToBeRemoved(() => screen.queryByText(/loading/i))
 
   const playerName = await screen.findByText('Priscilla Ahn', { exact: false });

@@ -63,7 +63,7 @@ it('should add a team and redirect to the team detail page', async () => {
   userEvent.type(stateField, 'VA');
   userEvent.click(submitBtn);
 
-  await screen.findByText('Loading', { exact: false });
+  // await screen.findByText('Loading', { exact: false });
   await waitForElementToBeRemoved(() => screen.queryByText(/loading/i))
 
   await screen.findByText('Fight Club');
