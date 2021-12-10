@@ -64,7 +64,7 @@ it('should add a player and redirect to the player detail page', async () => {
   userEvent.type(teamIdField, '35');
   userEvent.click(submitBtn);
   
-  await screen.findByText('Loading', { exact: false });
+  // await screen.findByText('Loading', { exact: false });
   await waitForElementToBeRemoved(() => screen.queryByText(/loading/i))
   await screen.findByText('Kamala', { exact: false });
 });
