@@ -67,3 +67,55 @@ nav ul a:active, a:hover {
 article li {
   list-style-type: none;
 }
+
+fieldset {
+  margin-top: 20px;
+  padding: 50px;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.player-list li, .team-list li {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 10px;
+}
+
+.admin-buttons {
+  display: flex;
+  gap: 5px;
+}
+
+button {
+  cursor: pointer;
+  border: 1px solid black;
+  font-family: 'Fira Sans', sans-serif;
+  background-color: white;
+  border-radius: 5px;
+
+}
+
+button:hover {
+  cursor: pointer;
+  border: 1px solid black;
+  font-family: 'Fira Sans', sans-serif;
+  background-color: black;
+  color: white;
+  border-radius: 5px;
+
+}
+
+button:active {
+  cursor: pointer;
+  border: 1px solid black;
+  font-family: 'Fira Sans', sans-serif;
+  background-color: yellowgreen;
+  color: black;
+  border-radius: 5px;
+
+}

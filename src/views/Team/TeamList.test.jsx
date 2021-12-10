@@ -8,6 +8,6 @@ it('should render the team list', async () => {
     </MemoryRouter>)
 
     screen.getByText('Loading teams...')
-    const teamName = await screen.findByText('Bridge City Sneakers', { exact: false })
+    const teamName = await screen.findByText('The Last Duel', { exact: false })
     expect(teamName).toBeInTheDocument()
 })
