@@ -1,4 +1,4 @@
-import { render, screen, waitForElementToBeRemoved } from '@testing-library/react';
+import { render, screen } from '@testing-library/react';
 import { setupServer } from 'msw/node';
 import { rest } from 'msw';
 import { Route, Router } from 'react-router-dom';
@@ -66,8 +66,8 @@ it('should update a team and redirect to the team detail page', async () => {
   userEvent.click(submitBtn);
   // screen.debug()
   await screen.findByText('Loading', { exact: false });
-  await waitForElementToBeRemoved(() => screen.queryByText(/loading/i))
+  // await waitForElementToBeRemoved(() => screen.queryByText(/loading/i))
 
 
-  await screen.findByText('Motorcycle Diaries');
+  await screen.findByText('Motorcycle Diaries', { exact: false });
 });
