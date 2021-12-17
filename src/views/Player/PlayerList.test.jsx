@@ -8,6 +8,6 @@ it('should render the player list', async () => {
     </MemoryRouter>)
 
     screen.getByText('Loading players...')
-    const teamName = await screen.findByText('Deb E. Downer', { exact: false })
-    expect(teamName).toBeInTheDocument()
+    const playerName = await screen.findByText('Mariah Carey', { exact: false })
+    expect(playerName).toBeInTheDocument()
 })

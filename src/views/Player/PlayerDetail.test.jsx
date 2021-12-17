@@ -1,13 +1,45 @@
-import { screen, render } from '@testing-library/react'
-import { MemoryRouter, Route } from 'react-router'
-import PlayerDetail from './PlayerDetail'
+import { render, screen, waitForElementToBeRemoved } from '@testing-library/react';
+import { MemoryRouter } from 'react-router-dom';
+import { setupServer } from 'msw/node';
+import { rest } from 'msw';
+import PlayerDetail from './PlayerDetail';
 
-it('should render player detail for Betty Grey', async () => {
-    render(<MemoryRouter initialEntries={['/players/12']}>
-        <Route path='/players/:id' component={PlayerDetail} />
-    </MemoryRouter>)
+const mockPlayer = {
+  id: 30,
+  created_at: '2021-12-08T20:26:24.408898+00:00',
+  name: 'Priscilla Ahn',
+  position: 'Pitcher',
+  team_id: 1,
+  teams: {name: 'Dodgers'}
+};
 
-    screen.getByText('Loading player...')
-    const teamName = await screen.findByText('Betty Grey', { exact: false })
-    expect(teamName).toBeInTheDocument()
-})
+const server = setupServer(
+  rest.get('https://gpjedlbjswyfiasfelfy.supabase.co/rest/v1/players', (req, res, ctx) => {
+    return res(ctx.json(mockPlayer))
+  })
+);
+
+beforeAll(() => {
+  server.listen();
+});
+
+afterAll(() => {
+  server.close();
+});
+
+it('should render a detailed view of an individual team', async () => {
+  render(
+    <MemoryRouter>
+      <PlayerDetail
+        match={{ params: { id: 30 } }}
+      />
+    </MemoryRouter>
+  );
+
+  // await screen.findByText('Loading', { exact: false });
+  await waitForElementToBeRemoved(() => screen.queryByText(/loading/i))
+
+  const playerName = await screen.findByText('Priscilla Ahn', { exact: false });
+
+  expect(playerName).toBeInTheDocument();
+});
